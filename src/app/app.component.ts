@@ -1,6 +1,7 @@
-import { Component, VERSION } from "@angular/core";
+import { ChangeDetectorRef, Component, VERSION } from "@angular/core";
 import { AbilityBuilder } from "@casl/ability";
-
+import { timeout } from "rxjs/operators";
+import { interval } from "rxjs";
 import defineRulesFor, { AppAbility, Todo } from "./services/ability";
 
 @Component({
@@ -9,20 +10,13 @@ import defineRulesFor, { AppAbility, Todo } from "./services/ability";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  todoFalseUpdateTest: Todo = { assignee: "john", type: "Todo" };
+  todoFalseUpdateTest: Todo = { assignee: "Martin", type: "Todo" };
   todoUpdateTest: Todo = { assignee: "me", type: "Todo" };
   name = "Angular " + VERSION.major;
 
-  constructor(private abilities: AppAbility) {
+  constructor(private abilities: AppAbility, private cd: ChangeDetectorRef) {
     this.abilities.update(defineRulesFor());
-
-    console.log(this.abilities.rules);
     this.addNewRulesAtRuntime();
-
-    console.log(this.abilities.can("update", this.todoFalseUpdateTest));
-    console.log(this.abilities.can("update", this.todoUpdateTest));
-    console.log(this.abilities.can("delete", this.todoFalseUpdateTest));
-    console.log(this.abilities.can("delete", this.todoUpdateTest));
   }
 
   addNewRulesAtRuntime() {
@@ -32,6 +26,13 @@ export class AppComponent {
 
     const newRules = [...this.abilities.rules, ...rules];
     this.abilities.update(newRules);
-    console.log(this.abilities.rules);
+    this.testUpdate();
+  }
+
+  testUpdate() {
+    interval(2000).subscribe(() => {
+      this.todoFalseUpdateTest.assignee = "john";
+      this.cd.markForCheck();
+    });
   }
 }

@@ -7,10 +7,7 @@ import {
 
 export class Todo {
   type?: "Todo";
-  id?: number;
-  title?: string;
   assignee?: string;
-  completed?: boolean;
 }
 
 type Actions = "manage" | "create" | "read" | "update" | "delete";
@@ -20,11 +17,9 @@ export type AppAbility = Ability<[Actions, Subjects]>;
 export const AppAbility = Ability as AbilityClass<AppAbility>;
 
 export default function defineRulesFor() {
-  const { can, rules } = new AbilityBuilder<AppAbility>();
+  const { can, rules } = new AbilityBuilder<AppAbility>(AppAbility);
 
-  can("manage", "all");
-  can("read", "all");
-  can(["read", "create", "update", "delete"], "Todo");
+  can(["read", "create", "update", "delete"], "all");
 
   return rules;
 }
