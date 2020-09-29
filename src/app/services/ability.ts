@@ -24,7 +24,8 @@ export default function defineRulesFor() {
 
   can('read', 'all')
   can(["read", "create"], "Todo");
-  can(["update", "delete"], "Todo", { assignee: "me" });
+  can("update", "Todo", { assignee: "me" });
+
 
   return rules;
 }
