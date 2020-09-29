@@ -1,13 +1,12 @@
-<hello name="{{ name }}"></hello>
 <p *ngIf="['update','delete'] | ableCustom: todoUpdateTest | async">
-	Can Update | Delete TODO, true test, {{todoUpdateTest.assignee}}
+	Can Update | Delete TODO, {{todoUpdateTest.assignee}}
 </p>
 <p *ngIf="'delete' | ableCustom: todoUpdateTest  | async">
-	Can delete TODO, true test, {{todoUpdateTest.assignee}}
+	Can Delete TODO, {{todoUpdateTest.assignee}}
 </p>
 <p *ngIf="['update','delete'] | ableCustom: todoFalseUpdateTest | async">
-	Can Update TODO, false test, {{todoFalseUpdateTest.assignee}}
+	Can Update TODO, {{todoFalseUpdateTest.assignee}}
 </p>
 <p *ngIf="'delete' | ableCustom: todoFalseUpdateTest | async ">
-	Can delete TODO, false test, {{todoFalseUpdateTest.assignee}}
+	Can Delete TODO, {{todoFalseUpdateTest.assignee}}
 </p>
