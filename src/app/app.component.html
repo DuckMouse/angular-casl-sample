@@ -1,0 +1,10 @@
+<hello name="{{ name }}"></hello>
+<p *ngIf="'read' | able: 'Todo'">
+	Start editing to see some magic happen :)
+</p>
+<p *ngIf="'update' | able: todoTest">
+	should show
+</p>
+<p *ngIf="'update' | able: todoFalseTest">
+	Should not show
+</p>
