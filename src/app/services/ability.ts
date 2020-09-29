@@ -22,10 +22,8 @@ export const AppAbility = Ability as AbilityClass<AppAbility>;
 export default function defineRulesFor() {
   const { can, rules } = new AbilityBuilder<AppAbility>();
 
-  can('read', 'all')
-  can(["read", "create"], "Todo");
-  can("update", "Todo", { assignee: "me" });
-
+  can("read", "all");
+  can(["read", "create", "update", "delete"], "Todo");
 
   return rules;
 }

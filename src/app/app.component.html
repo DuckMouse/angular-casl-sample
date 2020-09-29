@@ -1,13 +1,13 @@
 <hello name="{{ name }}"></hello>
 <p *ngIf="'update' | able: todoUpdateTest">
-	Can Update TODO, true test
+	Can Update TODO, true test, {{todoUpdateTest.assignee}}
 </p>
 <p *ngIf="'update' | able: todoFalseUpdateTest">
-	Can Update TODO, false test
-</p>
-<p *ngIf="'delete' | able: todoFalseUpdateTest ">
-	Can delete TODO, false test
+	Can Update TODO, false test, {{todoFalseUpdateTest.assignee}}
 </p>
 <p *ngIf="'delete' | able: todoUpdateTest ">
-	Can delete TODO, true test
+	Can delete TODO, true test, {{todoUpdateTest.assignee}}
+</p>
+<p *ngIf="'delete' | able: todoFalseUpdateTest ">
+	Can delete TODO, false test, {{todoFalseUpdateTest.assignee}}
 </p>

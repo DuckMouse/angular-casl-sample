@@ -9,7 +9,7 @@ import defineRulesFor, { AppAbility, Todo } from "./services/ability";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  todoFalseUpdateTest: Todo = { assignee: "x", type: "Todo" };
+  todoFalseUpdateTest: Todo = { assignee: "john", type: "Todo" };
   todoUpdateTest: Todo = { assignee: "me", type: "Todo" };
   name = "Angular " + VERSION.major;
 
@@ -26,8 +26,10 @@ export class AppComponent {
   }
 
   addNewRulesAtRuntime() {
-    const { can, rules } = new AbilityBuilder<AppAbility>();
-    can("delete", "Todo", { assignee: "me" });
+    const { can, cannot, rules } = new AbilityBuilder<AppAbility>();
+    cannot("delete", "Todo", { assignee: "john" });
+    cannot("update", "Todo", { assignee: "john" });
+
     const newRules = [...this.abilities.rules, ...rules];
     this.abilities.update(newRules);
     console.log(this.abilities.rules);
