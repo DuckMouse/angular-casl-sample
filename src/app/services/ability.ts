@@ -14,7 +14,7 @@ export class Todo {
 }
 
 type Actions = "manage" | "create" | "read" | "update" | "delete";
-type Subjects = "Todo" | Todo | "all";
+type Subjects = "Todo" | any | "all";
 
 export type AppAbility = Ability<[Actions, Subjects]>;
 export const AppAbility = Ability as AbilityClass<AppAbility>;
@@ -30,16 +30,10 @@ export default function defineRulesFor() {
   return rules;
 }
 
-function detectAppSubjectType(subject?: Subjects) {
+export function detectAppSubjectType(subject?: Subjects) {
   if (subject && typeof subject === "object" && subject.type) {
     return subject.type;
   }
 
   return detectSubjectType(subject);
-}
-
-export function buildAbilityFor(): AppAbility {
-  return new AppAbility(defineRulesFor(), {
-    detectSubjectType: detectAppSubjectType
-  });
 }

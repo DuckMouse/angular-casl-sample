@@ -1,10 +1,13 @@
 <hello name="{{ name }}"></hello>
-<p *ngIf="'read' | able: 'Todo'">
-	Start editing to see some magic happen :)
-</p>
 <p *ngIf="'update' | able: todoUpdateTest">
-	should show
+	Can Update TODO, true test
 </p>
 <p *ngIf="'update' | able: todoFalseUpdateTest">
-	Should not show
+	Can Update TODO, false test
+</p>
+<p *ngIf="'delete' | able: todoFalseUpdateTest ">
+	Can delete TODO, false test
+</p>
+<p *ngIf="'delete' | able: todoUpdateTest ">
+	Can delete TODO, true test
 </p>

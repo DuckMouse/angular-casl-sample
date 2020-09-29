@@ -7,15 +7,18 @@ import { HelloComponent } from "./hello.component";
 
 import { AbilityModule } from "@casl/angular";
 import { PureAbility, Ability } from "@casl/ability";
-import { AppAbility, buildAbilityFor } from "./services/ability";
-
-const ability = buildAbilityFor();
+import { AppAbility,  detectAppSubjectType } from "./services/ability";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, AbilityModule],
   declarations: [AppComponent, HelloComponent],
   providers: [
-    { provide: AppAbility, useValue: ability },
+    {
+      provide: AppAbility,
+      useValue: new AppAbility([], {
+        detectSubjectType: detectAppSubjectType
+      })
+    },
     { provide: PureAbility, useExisting: AppAbility }
   ],
   bootstrap: [AppComponent]
