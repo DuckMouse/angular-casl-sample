@@ -18,8 +18,7 @@ export const AppAbility = Ability as AbilityClass<AppAbility>;
 
 export default function defineRulesFor() {
   const { can, rules } = new AbilityBuilder<AppAbility>(AppAbility);
-
-  can(["read", "create", "update", "delete"], "all");
+  can(["read", "create", "update", "delete", "manage"], "all");
 
   return rules;
 }

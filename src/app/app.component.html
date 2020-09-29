@@ -1,3 +1,9 @@
+<p *ngIf="['delete','read','manage','update'] | ableCustom: 'all'  | async">
+	Can perform all tasks against TODO
+</p>
+<p *ngIf="'manage' | ableCustom: todoUpdateTest  | async">
+	Can Read TODO, {{todoUpdateTest.assignee}}
+</p>
 <p *ngIf="['update','delete'] | ableCustom: todoUpdateTest | async">
 	Can Update | Delete TODO, {{todoUpdateTest.assignee}}
 </p>
